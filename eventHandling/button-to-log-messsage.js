@@ -1,9 +1,11 @@
-var button = document.getElementById('myButton');
+// creating a button element
 
-function handleClick() {
-    aletr('yea');
-}
+const button = document.createElement('button');
+button.textContent = 'Click me';
 
-button.addEventListener('click', handleClick);
+button.addEventListener('click', () => {
+    console.log('Button clicked');
+});
 
 
+document.body.appendChild(button);
