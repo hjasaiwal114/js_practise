@@ -1,21 +1,15 @@
-// factory function
-function createCircle(radius) {
-    return {
-        radius,
-        draw: function() {
-            console.log('draw');
-        }
-    };
-}
-
-const circle = createCircle(1);
-circle.draw();
-
-// Constructor Fucntion
 function Circle(radius) {
     this.radius = radius;
     this.draw = function() {
         console.log('draw');
     }
 }
-const another = new Circle(1);
+
+const circle  = new Circle(10);
+
+circle.location = { x: 1};
+
+const propertName  = 'center location';
+circle[propertName] = { x:1 };
+
+delete circle['location'];
