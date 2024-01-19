@@ -7,3 +7,13 @@ function Circle(radius) {
 
 const circle  = new Circle(10);
 
+for (let key in circle) {
+    if (typeof circle[key] !== 'function')
+        console.log(key, circle[key]);
+}
+
+const keys = Object.key(circle);
+console.log(keys);
+
+if ('radius' in circle)
+    console.log('Circle has a radius.');
