@@ -7,9 +7,3 @@ function Circle(radius) {
 
 const circle  = new Circle(10);
 
-circle.location = { x: 1};
-
-const propertName  = 'center location';
-circle[propertName] = { x:1 };
-
-delete circle['location'];
