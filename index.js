@@ -1,18 +1,32 @@
-let baseSalary = 30_000;
-let overtime = 10;
-let rate = 20;
+const heavyFunction = {
+    radius : 1,
+    squareSide: 4,
+    calculateAreaOfCircle: function(radius) {
+        return Math.PI * radius * radius;
+    },
+    calculateAreaOfCircle: function(side) {
+        return side * side;
+    },
+    getCurrentDate: function() {
+        const currentDate = new Date();
+        return currentDate.toDateString();
+    },
+    performCalculations: function() {
+        const circleRadius = 5;
+        const circleArea = this.calculateAreaOfCircle(circleRadius);
+        console.log(`Area of Circle: ${circleArea}`);
 
-function getWage(baseSalary, overtime, rate) {
-    return basseSalary + (overtime * rate);
+        setTimeout(() => {
+            const squareSide = 4;
+            const squareArea = this.calculateAreaOfCircle(squareSide);
+            console.log(`Area of Square: ${squareArea}`);
+
+            setTimeout(() => {
+                const currentDate = this.getCurrentDate();
+                console.log(`Current date: ${currentDate}`);
+            }, 3000);
+        }, 3000);
+    },
 }
 
-let employee = {
-    baseSalary: 30_000,
-    ovetitme: 10,
-    rate: 20,
-    getWage: function() {
-        return this.baseSalary + (this.overtime * this.rate);
-    }
-};
-
-employee.getWage();
+heavyFunction.performCalculations();
