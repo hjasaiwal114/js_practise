@@ -1,11 +1,7 @@
-console.log();
+const fs = require('fs');
 
-setTimeout()
-clearTimeout();
+fs.readdir('$', function(err, files){
+    if  (err) console.log('Error', err);
+    else console.log('Result', files);
 
-
-setInterval()
-clearInterval()
-
-var message = ' ';
-global.setTimeout
+});
