@@ -1,17 +1,10 @@
-function doAthing() {
-    byDoingSomethingElse();
+var request  = require('request');
+function requestWrapper(url, callback) {
+    request.get(url, function (err, response) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, response);
+        }
+    })
 }
-
-function byDoingSomethingElse() {
-    throw new Error('uh oh!');
-}
-
-function init() {
-    try {
-        doAthing();
-    } catch(e) {
-        console.log(e);
-    }
-}
-
-init();
