@@ -1,38 +1,37 @@
 const express = require('express');
 const errorHandler = require('./middleware/errorHandler');
+const { tryCatch } = require('./utils/trycatch');
 
 const app = express();
 
 const getUser  = () => undefined;
+const getSubscription = () => undefined;
 
-app.get("/test", async (req, res) => {
-    try {
-        const user  = getUser();
+app.get(
+    "/test",
+    tryCatch(async (req, res) => {
+        const user = getuser();
         if (!user) {
             throw new Error("User not found");
         }
-    } catch (error) {
-        next(error);
-    }
+        return res.status(200).json({ success: true });
+    })
+);
 
-
-    return res.status(200).json({ success: true});
+const schema = Joi.object({
+    userId: Joi.number().required(),
 });
 
-app.post("/login", async (req, res) => {
-    try {
-        const user  = getUser();
-        if (!user) {
-            throw new Error("User not found");
+app.post(
+    "/login", 
+    tryCatch(async (req, res) => {
+        const { error, value } = schema.validate({});
+
+        const subscription = getSubscription();
+        if (!subscription) {
+            throw AppError(INVALID_SUBSCRIPTION, 'SUnscription not found', 400);
         }
-    } catch (error) {
-        console.log(error);
-        return res.status(400).send(error.message);
-    }
-
-
-    return res.status(200).json({ success: true});
-});
+ }))
 
 app.use(errorHandler)
 
