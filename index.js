@@ -1,31 +1,34 @@
-function downloadContent(url) {
-    const promise = urls.map(url => {
-        return new Promise((resolve, reject) => {
-            fetch(url)
-                .then(response => {
-                    if (!Response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(data => resolve(data))
-                .catch(error => resolve(error));
-        });
-    });
-    return Promise.all(promise) ;
+function callback_BasedFunction(arg1, arg2, callback) {
+
+    setTimeout(() => {
+        const result =  arg1 + arg2;
+        if (result % 2 !== 0) {
+            callback(null, result);
+        } else {
+            callback(new Error('Result is not odd!'), null);
+        }
+    }, 1000);
 }
 
-const urls = [
-    'https://jsonplaceholder.typicode.com/posts/1',
-    'https://jsonplaceholder.typicode.com/posts/2',
-    'https://jsonplaceholder.typicode.com/posts/3'
-  ];
+function promisifiedfiedDunction(arg1, arg2) {
+    return new Promise((resolve, reject) => {
+        callback_BasedFunction(arg1 , arg2, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
 
-downloadContent(urls)
-  .then(contents => {
-    console.log('Downloaded contents:', contents);
-  })
-  .catch(error => {
-    console.log('Error:', error.message);
-  });
-  
+promisifiedfiedDunction(2, 3) 
+    .then(result => {
+        console.log('Result', result);
+    })
+    .catch(error => {
+        console.log('Result', result);
+    })
+    .catch(error => {
+        console.log('Error:', error.message);
+    })
