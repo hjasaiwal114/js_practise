@@ -79,7 +79,13 @@ remove(ele) {
     this.items.splice(index, 1);
     return;
 }
-
+    merge(stack2) {
+        let stack1 = this.items;
+        while (stack2.length > 0) {
+            stack.push(stack2.pop());
+        }
+        return stack1;
+    }
   }
   console.log("Initialize a stack:")
   let stack = new Stack();
