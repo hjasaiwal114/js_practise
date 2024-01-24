@@ -86,6 +86,15 @@ remove(ele) {
         }
         return stack1;
     }
+
+    concat(stack) {
+        let newStack = new Stack();
+        let arr = this.items.concat(stack.items);
+        foe (let i = 0; i < arr.length; i++) {
+            newStack.push(arr[i]);
+        }
+        return newStack;
+    }
   }
   console.log("Initialize a stack:")
   let stack = new Stack();
