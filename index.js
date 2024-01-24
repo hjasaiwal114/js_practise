@@ -1,33 +1,28 @@
-class BankAccount {
-    constructor(accountNumber, balance) {
-        this.accountNumber = accountNumber;
-        this.balance  = balance;
-        console.log(`A/C No.: ${accountNumber}`);
-    }
-    deposite(amount) {
-        this.balance += amount;
-        console.log(`Deposite: $${amount}`);
-    }
-    withdraw(amount) {
-        if (amount <= this.balance) {
-            this.balance -= amount;
-            console.log(`Withdrawn: ${amount}`);
-        }
-        else
-        {
-            console.log(`Want to withdrawn: ${amount}`);
-            console.log('Insufficient balance');
-        }
-    }
-    displayBalance() {
-        console.log(`Account Blaance: $${amount}`);
-    }
+// Parent constructor function
+function Animal(name) {
+    this.name = name;
 }
 
-const account  = new BankAccount('SB-123', 1500);
+Animal.prototype.sayHello = function() {
+    console.log(`Hello, I'am ${this.name}`);
+};
 
-account.deposite(500);
-account.withdraw(400);
-account.displayBalance();
-account.withdraw(1800);
-account.displayBalance();
+function Dog(name, breed) {
+    Animal.call(this, name);
+
+    this.breed = breed;
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.construtor = Dog;
+
+Dog.prototype.bark  = function() {
+    console.log("WOof! Woof!")
+}
+
+const myAnimal = new Animal("Generic Animal");
+const myDog = new Dog("Buddy", "Golden Retriever");
+
+myAnimal.sayHello();
+myDog.sayHello();
+myDog.bark();
