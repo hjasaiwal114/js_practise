@@ -95,6 +95,20 @@ remove(ele) {
         }
         return newStack;
     }
+
+    intersect(stk) {
+        let intersection = new Stack();
+
+        for (let i =0; i< this.items.length; i++) {
+            let item = this.items[i];
+
+            if (stk.items.indexOf(item) != -1) {
+                intersection.push(item);
+            }
+        }
+        return intersection;
+    }
+
   }
   console.log("Initialize a stack:")
   let stack = new Stack();
