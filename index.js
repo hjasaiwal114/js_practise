@@ -1,28 +1,35 @@
-// Parent constructor function
-function Animal(name) {
-    this.name = name;
+class Shape  {
+    calaculateArea() {
+        throw new Error("Method 'CalculateArea()' must be over overidden in subclasses");
+    }
 }
 
-Animal.prototype.sayHello = function() {
-    console.log(`Hello, I'am ${this.name}`);
-};
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
 
-function Dog(name, breed) {
-    Animal.call(this, name);
-
-    this.breed = breed;
+    calaculateArea() {
+        return Math.PI * this.radius * this.radius;
+    }
 }
 
-Dog.prototype = Object.create(Animal.prototype);
-Dog.prototype.construtor = Dog;
-
-Dog.prototype.bark  = function() {
-    console.log("WOof! Woof!")
+class Rectangle extends Shape {
+    constructor(width, height) {
+        super();
+        this.width = width;
+        this.heigth = height;
+    }
+    calaculateArea() {
+        return this.width = this.height;
+    }
 }
 
-const myAnimal = new Animal("Generic Animal");
-const myDog = new Dog("Buddy", "Golden Retriever");
+const circle = new Circle(7);
+const circleArea = circle.calaculateArea();
+console.log(`Circle Area: ${circleArea}`);
 
-myAnimal.sayHello();
-myDog.sayHello();
-myDog.bark();
+const rectangle = new Rectangle(8, 9);
+const rectangleArea = rectangle.calaculateArea();
+console.log(`Rectangle area: ${rectangleArea}`);
