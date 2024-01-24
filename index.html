@@ -2,43 +2,79 @@
 <html>
 <head>
   <style>
-    .slideshow {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 300px;
+    .drag-list {
+      list-style: none;
+      padding: 0;
     }
 
-    .slideshow img {
-      width: 300px;
-      height: 300px;
+    .drag-item {
+      background-color: #CC56FF;
+      padding: 10px;
+      margin-bottom: 5px;
+      cursor: move;
     }
   </style>
 </head>
 <body>
-  <div class="slideshow">
-    <button id="previousBtn">Previous</button>
-    <img id="image" src="image1.jpg">
-    <button id="nextBtn">Next</button>
-  </div>
+  <ul id="dragList" class="drag-list">
+    <li class="drag-item" draggable="true">Mobile</li>
+    <li class="drag-item" draggable="true">Laptop</li>
+    <li class="drag-item" draggable="true">Desktop</li>
+    <li class="drag-item" draggable="true">Television</li>
+    <li class="drag-item" draggable="true">Radio</li>
+  </ul>
 
   <script>
-    const images = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
-    let currentIndex = 0;
+    const dragList = document.getElementById('dragList');
+    let draggedItem = null;
 
-    const previousBtn = document.getElementById('previousBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const image = document.getElementById('image');
+    // Add event listeners for drag and drop events
+    dragList.addEventListener('dragstart', handleDragStart);
+    dragList.addEventListener('dragover', handleDragOver);
+    dragList.addEventListener('drop', handleDrop);
 
-    previousBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + index.length) % images.length;
-        image.src = images[currentIndex];
-    });
+    // Drag start event handler
+    function handleDragStart(event) {
+      draggedItem = event.target;
+      event.dataTransfer.effectAllowed = 'move';
+      event.dataTransfer.setData('text/html', draggedItem.innerHTML);
+      event.target.style.opacity = '0.5';
+    }
 
-    nextBtn.addEventListener('click', () => {
-        currentIndex  = (currentIndex + 1) % images.length;
-        image.src = images[currentIndex];
-    });
+    // Drag over event handler
+    function handleDragOver(event) {
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
+      const targetItem = event.target;
+      if (targetItem !== draggedItem && targetItem.classList.contains('drag-item')) {
+        const boundingRect = targetItem.getBoundingClientRect();
+        const offset = boundingRect.y + (boundingRect.height / 2);
+        if (event.clientY - offset > 0) {
+          targetItem.style.borderBottom = 'solid 2px #000';
+          targetItem.style.borderTop = '';
+        } else {
+          targetItem.style.borderTop = 'solid 2px #000';
+          targetItem.style.borderBottom = '';
+        }
+      }
+    }
+
+    // Drop event handler
+    function handleDrop(event) {
+      event.preventDefault();
+      const targetItem = event.target;
+      if (targetItem !== draggedItem && targetItem.classList.contains('drag-item')) {
+        if (event.clientY > targetItem.getBoundingClientRect().top + (targetItem.offsetHeight / 2)) {
+          targetItem.parentNode.insertBefore(draggedItem, targetItem.nextSibling);
+        } else {
+          targetItem.parentNode.insertBefore(draggedItem, targetItem);
+        }
+      }
+      targetItem.style.borderTop = '';
+      targetItem.style.borderBottom = '';
+      draggedItem.style.opacity = '';
+      draggedItem = null;
+    }
   </script>
 </body>
 </html>
