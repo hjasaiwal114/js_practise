@@ -1,24 +1,33 @@
-// Write a JavaScript program to create a class called 'Rectangle' with properties for width and height. Include two methods to calculate rectangle area and perimeter. Create an instance of the 'Rectangle' class and calculate its area and perimeter.
-
-class Rectangle {
-    constructor(width, height) {
-        this.width = width;
-        this.height = height;
+class BankAccount {
+    constructor(accountNumber, balance) {
+        this.accountNumber = accountNumber;
+        this.balance  = balance;
+        console.log(`A/C No.: ${accountNumber}`);
     }
-
-    calculateArea() {
-        return this.width  = this.height;
+    deposite(amount) {
+        this.balance += amount;
+        console.log(`Deposite: $${amount}`);
     }
-
-    calculateArea() {
-        return 2 * (this.width + this.height);
+    withdraw(amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log(`Withdrawn: ${amount}`);
+        }
+        else
+        {
+            console.log(`Want to withdrawn: ${amount}`);
+            console.log('Insufficient balance');
+        }
+    }
+    displayBalance() {
+        console.log(`Account Blaance: $${amount}`);
     }
 }
 
-const rectangle = new Rectangle(12, 10);
+const account  = new BankAccount('SB-123', 1500);
 
-const area  = rectangle.calculateArea();
-const perimeter = rectangle.calculateArea();
-
-console.log(`Rectangle Area: ${area}`);
-console.log(`Rectangle Perimeter: ${perimeter}`);
+account.deposite(500);
+account.withdraw(400);
+account.displayBalance();
+account.withdraw(1800);
+account.displayBalance();
