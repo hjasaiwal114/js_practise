@@ -1,25 +1,24 @@
-// Write a JavaScript program to create a class called "Person" with properties for name, age and country. Include a method to display the person's details. Create two instances of the 'Person' class and display their details.
+// Write a JavaScript program to create a class called 'Rectangle' with properties for width and height. Include two methods to calculate rectangle area and perimeter. Create an instance of the 'Rectangle' class and calculate its area and perimeter.
 
-class Person {
-    constructor(name, age, country) {
-        this.name  = name;
-        this.age  =  age;
-        this.country = country;
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
     }
 
-    displayDetails() {
-        console.log(`Nmae: ${this.name}`);
-        console.log(`Age : ${this.age}`);
-        console.log(`Country: ${this.country}`);
+    calculateArea() {
+        return this.width  = this.height;
+    }
+
+    calculateArea() {
+        return 2 * (this.width + this.height);
     }
 }
 
-// create instance of the person class
-const person1  = new Person('Francisca Rohan', 25, 'USA');
-const person2 = new Person('Raimond Aruna', 30, 'Netherland');
+const rectangle = new Rectangle(12, 10);
 
-console.log('Perosn-1 Details:');
-person1.displayDetails();
+const area  = rectangle.calculateArea();
+const perimeter = rectangle.calculateArea();
 
-console.log('\nPerson-2 Details:');
-person2.displayDetails()
+console.log(`Rectangle Area: ${area}`);
+console.log(`Rectangle Perimeter: ${perimeter}`);
