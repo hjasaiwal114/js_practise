@@ -63,6 +63,22 @@ class Stack {
     }
     this.items = uniqueItems;
    }
+   rotateLeft() {
+        if (this.isEmpty()) {
+            return "Underflow";
+        }
+        let firsElement = this.items.shift();
+        this.items.push(firstElement);
+        return this.items;
+   }
+remove(ele) {
+    let index = this.items.indexOf(ele);
+    if (index == -1) {
+        return "Element not found in stack";
+    }
+    this.items.splice(index, 1);
+    return;
+}
 
   }
   console.log("Initialize a stack:")
