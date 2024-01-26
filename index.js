@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-class DoublyLinkedLidt {
+class DoublyLinkedList {
     constructor(value) {
         this.head = {
             value: value,
@@ -14,7 +14,7 @@ class DoublyLinkedLidt {
             previous: null
         };
         this.length = 0;
-        this.tail = this.head;
+        this.tail  = this.head;
     }
 
     add(newNode) {
@@ -29,33 +29,46 @@ class DoublyLinkedLidt {
             this.tail = newNode;
         }
 
-        this.length ++;
+        this.length++;
     }
 
-    size() {
-        return this.length;
-    }
-
-    printList() {
+    reverse() {
         let current = this.head;
-        let result = [];
-        while (current !== null) {
-            result.push(current.value);
-            current = current.next;
+        let temp = null;
+        while (current != null) {
+            temp = current.previous;
+            current.previous = current.next;
+            current.next = temp;
+            current = current.previous;
         }
-        console.log(result.json(' '));
-        return this;
+        if (temp != null) {
+            this.head = temp.previous;
+        }
+        return this.head;
     }
+
+printList() {
+    let current = this.head;
+    let result = [];
+    while (current !== null) {
+        result.push(current.value);
+        current = current.next;
+    }
+    console.log(result.json(' '));
+    return this;
 }
 
+}
 
 let numList = new DoublyLinkedList();
 numList.add(new Node(2));
 numList.add(new Node(3));
+numList.add(new Node(4));
 numList.add(new Node(5));
 numList.add(new Node(6));
-numList.add(new Node(8));
+numList.add(new Node(7));
 console.log("Original Doubly Linked Lists:")
 numList.printList();
-let linkedlist_size = numList.size();
-console.log("Size of the said Doubly Linked lists: "+linkedlist_size);
+console.log("Reverse Linked list:")
+numList.reverse();
+numList.printList();
