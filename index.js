@@ -1,17 +1,14 @@
-function allKeys(obj) {
-    if (!isObject(obj)) return [];
-    var keys = [];
-    for (var key in obj) keys.push(key);
-    return keys;
-}
-function isObject(obj)
+function upper_case(str)
 {
-    var type = typeof obj;
-    return type === 'function' || type === 'object' && !!obj;
+    regexp = /^[A-Z]/;
+    if (regexp.test(str))
+    {
+        console.log("String's first character is uppercase");
+    }
+    else 
+    {
+        console.log("String's first character is not uppercase");
+    }
 }
-function Student(name) {
-    this.name = name;
-}
-
-Student.prototype.rollno = true;
-console.log(allKeys(new Student("Sara")));
+upper_case('Abcd');
+upper_case('abcd');
