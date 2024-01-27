@@ -1,19 +1,17 @@
-Array.prototype.bubbleSort_algo = function()
+function FindAllMethods(obj) {
+    return Object.getOwnPropertyNames(obj).filter(function(property) {
+        return typeof obj[property] == "function";
+    });
+}
+//above code finds methods only
+//Following code finds both properties and methods 
+console.log(FindAllMethods(Math));
+console.log(FindAllMethods(Array));
+function all_properties(obj) 
 {
-    var is_sorted = false;
-    while (!is_sorted)
-    {
-        is_sorted = true;
-        for (var n = 0; n < this.length - 1; n++)
-        {
-            if (this[n] > this[n+1]) {
-                var x = this[n+1];
-                this[n+1] = this[n];
-                this[n] = x;
-                is_sorted = false;
-            }
-        }
-    }
-    return this;
-};
-console.log([6,4,0,3,-2,1].bubbleSort_algo());
+ return Object.getOwnPropertyNames(obj);
+}
+
+console.log(all_properties(Math));
+
+console.log(all_properties(Array));
