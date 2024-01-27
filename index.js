@@ -1,20 +1,24 @@
-const quickSort = arr => {
-    const a = [...arr];
-    if (a.length < 2) return a;
-    const pivotIndex = Math.floor(arr.length / 2);
-    const pivot = a[pivotIndex];
-    const[lo, hi] = a.reduce(
-        (acc, val, i) => {
-            if (val < pivot || (val === pivot && i != pivotIndex)) {
-                acc[0].push(val);
-            } else if (val > pivot) {
-                acc[1].push(val);
-            }
-            return acc;
-        },
-        [[], []]
-    );
-    return [...quickSort(lo), pivot, ...quickSort(hi)];
-};
+function merge_sort(left_part,right_part) 
+{
+	var i = 0;
+	var j = 0;
+	var results = [];
 
-console.log(quickSort([1, 6, 1, 5, 6,2,1]));
+	while (i < left_part.length || j < right_part.length) {
+		if (i === left_part.length) {
+			// j is the only index left_part
+			results.push(right_part[j]);
+			j++;
+		} 
+      else if (j === right_part.length || left_part[i] <= right_part[j]) {
+			results.push(left_part[i]);
+			i++;
+		} else {
+			results.push(right_part[j]);
+			j++;
+		}
+	}
+	return results;
+}
+
+console.log(merge_sort([1,3,4], [3,7,9]));
