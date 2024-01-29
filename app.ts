@@ -1,13 +1,11 @@
-// ommmit for exculdinfg the property
-interface Person {
-    name: string;
-    age: number;
-    address: string;
+interface Car {
+    make: string;
+    model: string;
+    year: number;
 }
 
-type PersonWithoutAge = Omit<Person, 'age'>;
+type PartialCar = Partial<Car>;
 
-const john: PersonWithoutAge = {
-    name: 'john',
-    address: '123 main set',
-}
+const partilCar : PartialCar = {
+    make: 'toyota',
+};
