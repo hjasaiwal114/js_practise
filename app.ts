@@ -1,11 +1,12 @@
-interface Car {
-    make: string;
-    model: string;
-    year: number;
+interface Product {
+    name: string;
+    price: number;
+    description: string;
 }
 
-type PartialCar = Partial<Car>;
+type DiscountProduct = Omit<Partial<Product>, 'description'>;
 
-const partilCar : PartialCar = {
-    make: 'toyota',
-};
+const discountItem : DiscountProduct = {
+    name: 'Widget',
+    price: 19.99,
+}
