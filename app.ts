@@ -1,11 +1,13 @@
-function myFunc<T>(input: T) : T {
-    return input;
+// ommmit for exculdinfg the property
+interface Person {
+    name: string;
+    age: number;
+    address: string;
 }
 
-const result  = myFunc<{
-    name: string;
-}>({
-    name: 'Himanshu',
-});
+type PersonWithoutAge = Omit<Person, 'age'>;
 
-const resultTwo  = myFunc<string[]>(["Tom"]);
+const john: PersonWithoutAge = {
+    name: 'john'
+    address: '123 main set',
+}
