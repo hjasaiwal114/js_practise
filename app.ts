@@ -8,6 +8,6 @@ interface Person {
 type PersonWithoutAge = Omit<Person, 'age'>;
 
 const john: PersonWithoutAge = {
-    name: 'john'
+    name: 'john',
     address: '123 main set',
 }
