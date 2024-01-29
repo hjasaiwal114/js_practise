@@ -1,21 +1,20 @@
-interface MyInterface {
-    property1?: string;
-    property2: number;
-    property3: boolean;
+type MyType = {
+    property: string;
+};
+
+enum MyEnum {
+    enumone= 'enumOne',
+    enumTwo = 'enumTwo',
 }
 
-interface MyInterfaceTwo {
-    property: number;
-}
 
-interface MyInterfaceThree {
-    property5?: boolean; 
-}
+type MyTypeTwo =  {
+    property2: boolean;
+    property3: myEnum 
+} & MyType;
 
-interface MyInterfaceTwo extends MyInterface,MyInterfaceThree {
-    property6: string;
-}
-
-async function myFunction(input: MyInterfaceTwo) : Promise<MyInteface> {
+async function myFunction(input: MyTypeTwo) : Promise<MyTypeTwo> {
     return input;
 }
+
+Object.values(MyEnum).map
