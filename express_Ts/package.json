@@ -2,5 +2,14 @@
   "name": "express_Ts",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+  }
 }
