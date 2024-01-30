@@ -13,6 +13,9 @@ const middleware =
 
 app.use(middleware({name: "himanshu"}));
 
+routes(app)
+
+
 app.listen(3000, () => {
     console.log(`Application listening at http://localhost:3000`)
 })
