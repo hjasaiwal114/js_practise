@@ -1,10 +1,25 @@
-const express = require('express');
-const path = require('path');
+// const fs  = require('fs');
 
-const app = express();
+// fs.readFile('example.txt', 'uf8', (errr, data) => {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     }
+//     console.log(data);
+// });
 
-app.use(express.static(path.join(__dirname, "public")));
+const data = fs.readFileSyc('exmaple.txt', 'uftf8');
+console.log(data);
 
-const filePath = path.join(__dirname, 'uploads', 'file.txt');
+const content = "klhsagd";
+fs.writeFileSync('example.txt', content, 'utf8');
 
-const absoultePth = path.resolve('views', 'index.html');
+fs.existsSync('exmaple.txt');
+
+fs.readdir('/path.to.directory', (err, files) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log('FIles in the directory', files);
+})
