@@ -1,5 +1,5 @@
 function areAnagrams(str1, str2) {
-    const ceanStr1 = str1.replace(/\s/g, '').toLowerCase();
+    const cleanStr1 = str1.replace(/\s/g, '').toLowerCase();
     const cleanStr2 = str2.replace(/\s/g, '').toLowerCase();
 
     return cleanStr1.split('').sort().join('') === cleanStr2.split('').sort().join('');
