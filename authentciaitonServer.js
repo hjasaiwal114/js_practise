@@ -1,25 +1,31 @@
-// const fs  = require('fs');
+const express = require(express);
+const fs = require('fs');
+const path = require('path');
+const app = express();
 
-// fs.readFile('example.txt', 'uf8', (errr, data) => {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     }
-//     console.log(data);
-// });
 
-const data = fs.readFileSyc('exmaple.txt', 'uftf8');
-console.log(data);
+app.get('/files', (req, res) => {
+    fs.readdir(path.join(__dirname, './files/'), (err, files) => {
+        if (err) {
+            return res.status(500).json({error: 'Failed to retrieve file'});
+        }
+        res.json(files);
+    });
+});
 
-const content = "klhsagd";
-fs.writeFileSync('example.txt', content, 'utf8');
+app.get('file/:filename', (req, res) => {
+    const filepath = path.join(__dirname, './files', req.params.filename);
 
-fs.existsSync('exmaple.txt');
+    fs.readFile(filepath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(404).send('File not found');
+        }
+        res.send(data);
+    });
+});
 
-fs.readdir('/path.to.directory', (err, files) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    console.log('FIles in the directory', files);
-})
+app.all('*', (req, res) => {
+    res.status(404).send("Route not found");
+});
+
+module.exports = app;
