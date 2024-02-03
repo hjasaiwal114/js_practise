@@ -37,4 +37,4 @@ router.get('/me', authenticateJwt, async (req, res) => {
     }
 });
 
-module.export = router
+export default router

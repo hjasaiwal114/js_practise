@@ -1,12 +1,18 @@
 const express = require("express");
 const { authenticateJwt, SECRET } = require("../middleware/index");
-const { Todo } = requirw("../db");
+const { Todo } = require("../db");
 const router = express.Router();
 
+interface CreateTodoInput {
+    title: string;
+    description: string;
+}
+
+// Zod => input validation libraries
 router.post('/todos', authenticateJwt, (req, res) => {
-    const {title, description } = req.body;
+    const inputs: CreateTodoInput = req.body;
     const done  = false;
-    const userId = req.userId;
+    const userId = req.header["userId"];
 
     const newTodo = new Todo({ title, description, done, userId });
 

@@ -1,16 +1,20 @@
 import  jwt from 'jsonwebtoken';
-import  Response from  'express';
-const SECRET = 'SECr3t';
+export const SECRET = 'SECr3t';
+import {Request, Response, NextFunction } from 'express';
 
-const authenticateJwt = (req, res, next) => {
+interface updatedTodo extends Request {
+    userId: string;
+}
+
+export const authenticateJwt = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
         const token = authHeader.split('')[1];
-        jwt.verify(token, SECRET, (err, user) => {
+        jwt.verify(token, SECRET, (err, payload) => {
             if (err) {
                 return res.sendStatus(403);
             }
-            req.userId = user.id;
+            req.headers["userid"] = payload.id;
             next();
         });
     } else {
