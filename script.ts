@@ -1,25 +1,40 @@
-class Bus {
-    // Properties
+// Inheritance
+
+class Car {
     make: string;
     model: string;
     year: number;
-  
-    // Constructor
+
     constructor(make: string, model: string, year: number) {
-      this.make = make;
-      this.model = model;
-      this.year = year;
+        this.make = make;
+        this.model = model;
+        this.year = year;
     }
-  
-    // Method to start the bus
-    start() {
-      console.log(`The ${this.make} ${this.model} (Year: ${this.year}) is starting.`);
+     start() {
+        console.log(`The ${this.make} ${this.model} {Year: ${this.year}} is starting.`);
+     }
+}
+
+class SUV extends Car {
+    offRoadCapable: boolean;
+
+    constructor(make:string, model: string, year: number , offRoadCapable: boolean) {
+
+        super (make, model, year);
+
+        this.offRoadCapable = offRoadCapable;
     }
-  }
-  
-  // Create a Bus object
-  const myBus = new Bus("Volvo", "9400 B11R", 2019);
-  
-  // Call the start method to start the bus
-  myBus.start(); 
-  
+    toggleOffRoadMore() {
+        if (this.offRoadCapable) {
+            console.log(`The ${this.make} ${this.model} is now in off mode.`);
+        } else {
+            console.log(`The ${this.make} ${this.model} is not suitable for off-road drivinf`)
+        }
+    }
+ }
+
+ const mySuv  = new SUV('kndfb', "kshf", 2023, true);
+
+ mySuv.start();
+
+ mySuv.toggleOffRoadMore()
