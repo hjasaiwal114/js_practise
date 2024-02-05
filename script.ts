@@ -1,20 +1,20 @@
-class Animal {
+class Person {
     name: string;
-    species: string;
+    age: number;
 
-    constructor(name: string, species: string) {
-        this.name = name;
-        this.species = species;
+    constructor(name: string, age: number) {
+        this.age = age;
+        this.age = age;
     }
 }
 
-class Tiger extends Animal {
-    // Method to roar
-     roar () {
-        console.log(`The tigger named ${this.name} is roaring.`);
-     }
+class Employee extends Person {
+    employeeId: string;
+
+    constructor(name: string, age: number, employeeId: string) {
+        super(name, age);
+         this.employeeId = employeeId;
+    }
 }
 
-const myTigger = new Tiger('aber', 'hg');
-
-myTigger.roar();
+const myEmployeee = new Employee("Elimra Ugochi", 40, "EPM-0012");
