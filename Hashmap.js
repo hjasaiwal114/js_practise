@@ -1,69 +1,54 @@
-export default class HashTable {
-    constructor(hashTableSize = defaultHashTableSize) {
-        this.buckets = Array(hashTableSize).fill(null).map(() => new LinkedList());
-
-        this.keys = {};
+class HashMap {
+    constructor() {
+        this._buckets = [];
     }
 
-    hash(keys) {
-        const hash = Array.from(keys).reduce(
-            (hashAccumblator, keySymbol) => (hashAccumulator + keySymbol.charCodeAt(0)),
-            0,
-        );
-        return hash % this.buckets.length;
-    }
-    set(key, value) {
-        const keyHash = this.hash(key);
-        this.keys[key] = keyHash;
-        const bucketLinkedList = this.buckets[keyHash];
-        const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue.key === key });
-
-        if (!node) {
-            bucketLinkedList.append({ key, value });
-        } else {
-            node.value.value = value;
+    _hash(key) {
+        let hash = 0;
+        for (let i = 0; i < key.length; i++) {
+            hash = (hash + key.charCodeAt(i)) % this._buckets.length;
         }
+        return hash;
     }
-    delete(key) {
-        const keyHash = this.hash(key);
-        delete this.keys[key];
-        const bucketLinkedList  = this.buckets[keyHash];
-        const node  = bucketLinkedList.find({ callback: (nodeVlaue) => nodeValue.key === key });
-        
-        if (node) {
-            return bucketLinkedList.delete(node.value);
+    set (key, value) {
+        const index = this._hash(key);
+        if (!this._buckets[index]) {
+            this._buckets[index] = [];
         }
-
-        return null;
+        const bucket = this._buckets[index];
+        for (let i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                bucket[i][1] = value;
+                return;
+            }
+        }
+        bucket.push([key, value]);
     }
-
     get(key) {
-        const bucketLinkedList = this.buckets[this.hash(key)];
-        const node = bucketLinkedList.find({ callback: (nodeValue) => nodeValue,key === key });
-
-        return node ? node.value : undefined;
+        const index = this._hash(key);
+        const bucket = this._bucket[index];
+        if (!bucket) {
+            return undefined;
+        }
+        for (let i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                return bucket[i][1];
+            }
+        }
+        return undefined
     }
 
-    has(key) {
-        return Object.hasOwnProperty.call(this.keys, key);
-    }
-
-    get(key) {
-        const bucketLinekdlist = this.buckets[this.hash(key)];
-        const node = bucketLinekdlist.find({ callback: (nodeValue) => nodeValue.key === key });
-
-        return node ? node.value.value : undefined;
-    }
-
-    getKeys() {
-        return Object.keys(this.keys);
-    }
-
-    getValues() {
-        return this.buckets.reduce((values, bucket) => {
-            const bucketVlues = bucket.toArray()
-            .map((linkedListNode) => linkedListNode.value.value);
-            return values.concat(bucketValues);
-        }, [])
+    remove(key) {
+        const index = this._hash(key);
+        const bucket = this._buckets[index];
+        if (!bucket) {
+            return;
+        }
+        for (let i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                bucket.splice(i, 1);
+                return;
+            }
+        }
     }
 }
