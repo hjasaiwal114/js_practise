@@ -5,6 +5,10 @@
   "repository": "https://github.com/hjasaiwal114/js_practise.git",
   "author": "hjasaiwal114 <68457116+hjasaiwal114@users.noreply.github.com>",
   "license": "MIT",
+
+  "scripts": {
+     "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
+  },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "config": "^3.3.11",
