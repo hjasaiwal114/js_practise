@@ -4,7 +4,7 @@ import logger from "../utils/logger";
 
 export function createUserHandler(req: Request, res: Response) {
     try{
-    
+      const user = await createUser(req.body);
     }
     catch(e){
         logger.error(e)
