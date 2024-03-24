@@ -19,3 +19,8 @@ export const createUserSchema = object({
         path: ["passwordConfirmation"],
     }),
 });
+
+export type CreateUserInput = Omit<
+   TypeOf<typeof createUserSchema>,
+   "body.passwordConfirmation"
+>;
